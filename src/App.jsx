@@ -1,3 +1,4 @@
+import axios from "axios";
 function Header() {
   return (
     <header>
@@ -23,22 +24,23 @@ function PostsNew() {
   );
 }
 
-function PostsIndex() {
+function PostsIndex(props) {
+  console.log(props.posts);
   return (
     <div id="posts-index">
       <h1>All posts</h1>
-      <div className="posts">
-        <h2>Code For Dummies</h2>
-        <img src="https://pictures.abebooks.com/isbn/9781118951309-us.jpg" alt="" />
-        <p>Author: Alex Centeno</p>
-        <button>More Info</button>
-      </div>
-      <div className="Posts">
-        <h2>NFL Draft</h2>
-        <img src="https://pbs.twimg.com/profile_images/1611754721701773314/JKLJNXKU_400x400.jpg" alt="" />
-        <p>Author: Jake Smith</p>
-        <button>More Info</button>
-      </div>
+      {props.posts.map((post) => {
+        return (
+          <>
+            <div className="posts">
+              <h2>{post.title}</h2>
+              <img src={post.image_url} alt="" />
+              <p>Author: {post.author}</p>
+              <button>More Info</button>
+            </div>
+          </>
+        );
+      })}
     </div>
   );
 }
@@ -52,10 +54,19 @@ function Footer() {
 }
 
 function Content() {
+  let posts = [];
+  const handleIndexPosts = () => {
+    axios.get("http://localhost:3000/posts.json").then((response) => {
+      console.log(response.data);
+      posts = response.data;
+    });
+  };
+
   return (
     <div>
       <PostsNew />
-      <PostsIndex />
+      <button onClick={handleIndexPosts}>Load posts</button>
+      <PostsIndex posts={posts} />
     </div>
   );
 }
