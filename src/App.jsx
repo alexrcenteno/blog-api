@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useState } from "react";
+
 function Header() {
   return (
     <header>
@@ -54,11 +56,12 @@ function Footer() {
 }
 
 function Content() {
-  let posts = [];
+  const [posts, setPosts] = useState([]);
+
   const handleIndexPosts = () => {
     axios.get("http://localhost:3000/posts.json").then((response) => {
       console.log(response.data);
-      posts = response.data;
+      setPosts(response.data);
     });
   };
 
