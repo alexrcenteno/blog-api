@@ -6,7 +6,7 @@ export function PostsIndex(props) {
       {props.posts.map((post) => {
         return (
           <>
-            <div className="posts">
+            <div className="posts" key={post.id}>
               <h2>{post.title}</h2>
               <img src={post.image} alt="" />
               <p>Body {post.body}</p>
