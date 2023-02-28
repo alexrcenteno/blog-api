@@ -1,3 +1,5 @@
+import { LogoutLink } from "./LogoutLink";
+
 export function Header() {
   return (
     // <header>
@@ -52,6 +54,9 @@ export function Header() {
               </ul>
             </li>
           </ul>
+          <li className="nav-item">
+            <LogoutLink />
+          </li>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success" type="submit">
