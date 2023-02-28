@@ -32,6 +32,29 @@ export function Content() {
     setCurrentPost(post);
   };
 
+  const handleUpdatePost = (id, params) => {
+    axios.patch(`http://localhost:3000/posts/${id}.json`, params).then((response) => {
+      const updatedPost = response.data;
+      setPosts(
+        posts.map((post) => {
+          if (post.id === updatedPost.id) {
+            return updatedPost;
+          } else {
+            return post;
+          }
+        })
+      );
+    });
+  };
+
+  const handleDestroyPost = (post) => {
+    axios.delete(`http://localhost:3000/posts${post.id}.json`).then((response) => {
+      console.log(response.data);
+      setPosts(posts.filter((r) => r.id !== post.id));
+      handleClose();
+    });
+  };
+
   const handleClose = () => {
     setIsPostsShowVisible(false);
   };
@@ -46,7 +69,12 @@ export function Content() {
       <PostsNew onCreatePost={handleCreatePost} />
       <PostsIndex posts={posts} onShowPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <PostsShow post={currentPost} />
+        <PostsShow
+          post={currentPost}
+          onUpdatePost={handleUpdatePost}
+          onClose={handleClose}
+          onDestroyClose={handleDestroyPost}
+        />
       </Modal>
     </div>
   );
