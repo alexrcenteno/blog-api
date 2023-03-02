@@ -8,6 +8,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Routes, Route } from "react-router-dom";
 import { About } from "./About";
+import { PostsShowPage } from "./PostsShowPage";
 
 export function Content() {
   const [posts, setPosts] = useState([]);
@@ -26,6 +27,7 @@ export function Content() {
       console.log(response.data);
       const newPost = response.data;
       setPosts([...posts, newPost]);
+      window.location.href = "/recipes";
     });
   };
 
@@ -68,11 +70,14 @@ export function Content() {
       <div className="container"></div>
       <Routes>
         <Route path="/about" element={<About />} />
+        <Route path="/signup" element={Signup} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/posts/new" element={<PostsNew onCreatePost={handleCreatePost} />} />
+        <Route path="/posts/" element={<postsIndex posts={posts} onShowPost={handleShowPost} />} />
+        <Route path="/" element={<PostsIndex posts={posts} onShowPost={handleShowPost} />} />
+        <Route path="/Posts/:id" element={<PostsShowPage onDestroyPost={handleDestroyPost} />} />
       </Routes>
-      <Login />
-      <Signup />
-      <PostsNew onCreatePost={handleCreatePost} />
-      <PostsIndex posts={posts} onShowPost={handleShowPost} />
+
       <Modal show={isPostsShowVisible} onClose={handleClose}>
         <PostsShow
           post={currentPost}

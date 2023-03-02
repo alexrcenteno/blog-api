@@ -51,18 +51,28 @@ export function Header() {
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <Link to="/recipes" className="dropdown-item">
                     All Blogs
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <Link to="/recipes/new" className="dropdown-item">
                     New Blogs
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
           </ul>
+          <li className="nav-item">
+            <Link to="/signup" className="nav-link">
+              Signup
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </li>
           <li className="nav-item">
             <LogoutLink />
           </li>
