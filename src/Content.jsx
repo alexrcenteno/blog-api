@@ -6,6 +6,8 @@ import { Modal } from "./Modal";
 import { PostsShow } from "./PostsShow";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
+import { Routes, Route } from "react-router-dom";
+import { About } from "./About";
 
 export function Content() {
   const [posts, setPosts] = useState([]);
@@ -64,6 +66,9 @@ export function Content() {
   return (
     <div>
       <div className="container"></div>
+      <Routes>
+        <Route path="/about" element={<About />} />
+      </Routes>
       <Login />
       <Signup />
       <PostsNew onCreatePost={handleCreatePost} />

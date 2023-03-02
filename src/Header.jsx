@@ -1,4 +1,8 @@
 import { LogoutLink } from "./LogoutLink";
+import { Modal } from "./Modal";
+import { Signup } from "./Signup";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Header() {
   return (
@@ -25,9 +29,14 @@ export function Header() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+              <Link to="/" class="nav-link active">
                 Home
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/about" className="nav-link">
+                About
+              </Link>
             </li>
 
             <li class="nav-item dropdown">

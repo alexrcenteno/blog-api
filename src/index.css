@@ -1,7 +1,19 @@
-#posts-index img {
-  width: 300px;
-}
+
 
 html {
   scroll-behavior: smooth;
+}
+
+#root { 
+	font-family: Georgia,Times,Times New Roman,serif; 
+  background-image: url('./assets/restaurant.webp');
+}
+
+.card img {
+  object-fit: cover;
+  height: 200px;
+}
+
+h1 {
+  color:antiquewhite
 }
